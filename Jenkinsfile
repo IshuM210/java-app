@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK21'       // Your JDK name in Jenkins
+        maven 'Maven3'    // Your Maven name in Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/<username>/<repo>.git'
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                bat 'mvn clean package'
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build completed successfully!'
+        }
+        failure {
+            echo '❌ Build failed. Check console output!'
+        }
+    }
+}
