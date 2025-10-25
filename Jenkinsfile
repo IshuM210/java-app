@@ -18,7 +18,12 @@ pipeline {
                 bat 'mvn clean package'
             }
         }
-
+        stage('Run Java Program') {
+            steps {
+                // Run your Java main class and print output to Jenkins console
+                bat 'java -cp target\\MyJavaApp-1.0-SNAPSHOT.jar com.example.LargestNumber'
+            }
+        }
         stage('Archive Artifacts') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
