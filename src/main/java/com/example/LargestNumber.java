@@ -1,6 +1,6 @@
 package com.example;
 
-public class LargestNumber {
+public class LargestNumber { 
     public static void main(String[] args) {
         int num1 = 25;
         int num2 = 42;
