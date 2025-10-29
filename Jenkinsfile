@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any 
 
     tools {
         jdk 'JDK21'       // Your JDK name in Jenkins
